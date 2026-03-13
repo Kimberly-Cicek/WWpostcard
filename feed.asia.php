@@ -30,8 +30,7 @@ $postcards = $stmt->fetchAll();
                             <div class="col-md-5">
                                 <div class="postcard-back">
                                     <div class="stamp-box">
-                                        <span class="stamp-country"><?= htmlspecialchars($row['country']) ?></span>
-                                        <span class="stamp-city"><?= htmlspecialchars($row['city']) ?></span>
+                                        <i class="fa-solid fa-location-dot fa-3x" style=" color: #ff5733;"></i>
                                     </div>
 
                                     <h2 class="h4 pe-5"><?= htmlspecialchars($row['title']) ?></h2>
@@ -41,7 +40,9 @@ $postcards = $stmt->fetchAll();
                                         <?= htmlspecialchars($row['country']) ?>
                                     </p>
 
-                                    <p><?= nl2br(htmlspecialchars($row['message'])) ?></p>
+                                    <div class="postcard-message">
+                                        <?= nl2br(htmlspecialchars($row['message'])) ?>
+                                    </div>
 
                                     <p class="small text-muted mt-3 mb-0">
                                         Publicerad: <?= htmlspecialchars($row['created_at']) ?>
