@@ -6,7 +6,7 @@ require_once 'assets/includes/header.php';
 ?>
 
 <main class="container mt-5">
-    <h1 class="mb-4">Ladda upp vykort</h1>
+    <h1 class="mb-4">Skapa nytt vykort</h1>
 
     <form action="add_postcard.php" method="post" enctype="multipart/form-data">
 
