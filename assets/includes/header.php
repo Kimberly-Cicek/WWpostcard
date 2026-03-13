@@ -1,3 +1,9 @@
+<?php
+require_once 'assets/functions/photo.uploads.php';
+require_once 'assets/includes/display_errors.php';
+require_once 'assets/config/db.php';
+?>
+
 <!DOCTYPE html>
 <html lang="sv">
 
