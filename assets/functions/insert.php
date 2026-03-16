@@ -14,9 +14,14 @@ if (isset($_POST['create_postcard'])) {
         empty($country) ||
         empty($city)
     ) {
-        echo '<div class="container mt-3"><div class="alert alert-danger">Alla fält måste fyllas i.</div></div>';
-    } elseif (!isset($_FILES['image']) || $_FILES['image']['error'] !== 0) {
+    } elseif (!isset($_FILES['image'])) {
+        echo '<div class="container mt-3"><div class="alert alert-danger">Ingen fil skickades.</div></div>';
+    } elseif ($_FILES['image']['error'] === UPLOAD_ERR_NO_FILE) {
         echo '<div class="container mt-3"><div class="alert alert-danger">Du måste välja en bild.</div></div>';
+    } elseif ($_FILES['image']['error'] === UPLOAD_ERR_INI_SIZE || $_FILES['image']['error'] === UPLOAD_ERR_FORM_SIZE) {
+        echo '<div class="container mt-3"><div class="alert alert-danger">Bilden är för stor.</div></div>';
+    } elseif ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+        echo '<div class="container mt-3"><div class="alert alert-danger">Fel vid uppladdning. Felkod: ' . $_FILES['image']['error'] . '</div></div>';
     } else {
         $uploadDir = 'uploads/';
 

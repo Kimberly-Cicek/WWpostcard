@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="sv">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asien - Vykortsflöde</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-
 <?php
-require 'assets/config/db.php';
+require_once 'assets/config/db.php';
+require_once 'assets/includes/header.php';
 
 $continent = 'Asien';
 
@@ -24,50 +9,62 @@ $stmt->execute(['continent' => $continent]);
 $postcards = $stmt->fetchAll();
 ?>
 
-<body class="bg-light">
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h2">Vykort från Asien</h1>
+    </div>
 
-    <div class="container py-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h2">Vykort från Asien</h1>
-            <a href="add_postcard.php" class="btn btn-dark">Ladda upp vykort</a>
-        </div>
-
-        <?php if ($postcards): ?>
+    <?php if ($postcards): ?>
+        <div class="row g-4">
             <?php foreach ($postcards as $row): ?>
-                <div class="card shadow-sm mb-4 p-4">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-lg-7">
-                            <img src="<?= htmlspecialchars($row['image_path']) ?>"
-                                alt="<?= htmlspecialchars($row['title']) ?>"
-                                class="img-fluid rounded">
-                        </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card postcard-card shadow-sm h-100 p-4">
+                        <div class="row g-4 align-items-stretch h-100">
 
-                        <div class="col-lg-5">
-                            <h2 class="h4"><?= htmlspecialchars($row['title']) ?></h2>
-                            <p class="text-muted">
-                                <?= htmlspecialchars($row['city']) ?>, <?= htmlspecialchars($row['country']) ?>
-                            </p>
-                            <p><?= nl2br(htmlspecialchars($row['message'])) ?></p>
-
-                            <div class="mt-4">
-                                <h3 class="h6">Kommentarer</h3>
-                                <p class="border-bottom pb-2">Vilket fint ställe!</p>
-                                <p class="border-bottom pb-2">Dit vill jag resa.</p>
-                                <p class="border-bottom pb-2">Älskar bilden.</p>
+                            <div class="col-md-7">
+                                <img src="<?= htmlspecialchars($row['image_path']) ?>"
+                                    alt="<?= htmlspecialchars($row['title']) ?>"
+                                    class="postcard-image">
                             </div>
 
-                            <p class="small text-muted mt-3 mb-0">
-                                Publicerad: <?= htmlspecialchars($row['created_at']) ?>
-                            </p>
+                            <div class="col-md-5">
+                                <div class="postcard-back">
+                                    <div class="stamp-box">
+                                        <i class="fa-solid fa-location-dot fa-3x" style=" color: #ff5733;"></i>
+                                    </div>
+
+                                    <h2 class="h4 pe-5"><?= htmlspecialchars($row['title']) ?></h2>
+
+                                    <p class="text-muted mb-2">
+                                        <?= htmlspecialchars($row['city']) ?>,
+                                        <?= htmlspecialchars($row['country']) ?>
+                                    </p>
+
+                                    <div class="postcard-message">
+                                        <?= nl2br(htmlspecialchars($row['message'])) ?>
+                                    </div>
+
+                                    <p class="small text-muted mt-3 mb-0">
+                                        Publicerad: <?= htmlspecialchars($row['created_at']) ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-end mt-3">
+                            <button class="btn btn-outline-dark btn-sm">
+                                Kommentera
+                            </button>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
-        <?php else: ?>
-            <div class="alert alert-info">Det finns inga vykort från Asien ännu.</div>
-        <?php endif; ?>
-    </div>
+        </div>
+    <?php else: ?>
+        <div class="alert alert-info">Det finns inga vykort från Asien ännu.</div>
+    <?php endif; ?>
+</div>
 
-</body>
-
-</html>
+<?php
+require_once 'assets/includes/footer.php';
+?>
