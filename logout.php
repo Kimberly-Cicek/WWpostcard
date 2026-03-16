@@ -17,7 +17,7 @@ require_once 'assets/includes/header.php';
 
 
     </form>
-    <p>Ej medlem? Tryck <a href="register.php">här</a> för att registrera dig!</p>
+    <p>Ej medlem? Tryck hejhej<a href="register.php">här</a> för att registrera dig!</p>
 
 </main>
 
