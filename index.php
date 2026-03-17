@@ -21,6 +21,7 @@ require_once 'assets/includes/header.php';
         </div>
     </section>
     <!-- Features section -->
+     <!-- Felmeddelande och inloggning+utloggningsmeddelande ska läggas in !-->
     <section class="py-5">
         <div class="container text-center">
             <h2 class="mb-5 text-success">Varför välja EcoVibe?</h2>
