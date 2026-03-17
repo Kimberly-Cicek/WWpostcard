@@ -45,9 +45,7 @@ require_once 'assets/functions/session.login.php';
                 </form>
                 <?php
                 // Checks whether user is logged in or not
-                if (isset($_SESSION['user
-_id']) && !empty($_SESSION['user
-_id'])) {
+                if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
                     echo '
     <a href="my_page.php" class="btn btn-outline-success me-2">
     <i class="fa-solid fa-circle-user"></i> Min sida</a>
